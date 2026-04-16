@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>光明響樂迴盪校園前庭｜光明國小美藝之夜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0ea5e9;
+      --primary-dark: #0369a1;
+      --secondary: #84cc16;
+      --accent: #f59e0b;
+      --bg-base: #fcfcfd;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, sans-serif;
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(circle at 2px 2px, #e2e8f0 1px, transparent 0);
+      background-size: 32px 32px;
+      color: var(--text-main);
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    .top-bar {
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      width: 100%;
+    }
+
+    nav {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem 5%;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    header.dynamic-header {
+      padding: 6rem 5% 10rem;
+      position: relative;
+      background: var(--white);
+      text-align: center;
+    }
+
+    .header-shape {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .header-shape svg {
+      position: relative;
+      display: block;
+      width: calc(150% + 1.3px);
+      height: 100px;
+    }
+
+    .header-shape .shape-fill {
+      fill: var(--bg-base);
+    }
+
+    .title-box {
+      max-width: 1040px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: var(--secondary);
+      color: white;
+      font-weight: 700;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      transform: skewX(-10deg);
+      letter-spacing: 1px;
+    }
+
+    .dynamic-header h1 {
+      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .sub-title {
+      font-size: 1.2rem;
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .content-layout {
+      max-width: 1200px;
+      margin: -4rem auto 5rem;
+      padding: 0 5%;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    article.news-body {
+      background: var(--white);
+      padding: 4rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 3rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 1.25rem;
+    }
+
+    .rich-content {
+      font-size: 1.14rem;
+    }
+
+    .rich-content p {
+      margin-bottom: 1.8rem;
+      text-align: justify;
+    }
+
+    .rich-content strong {
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--secondary);
+    }
+
+    .featured-quote {
+      margin: 3.5rem 0;
+      padding: 2.5rem 2.5rem 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-radius: 0 50px 0 50px;
+      position: relative;
+    }
+
+    .featured-quote::before {
+      content: '“';
+      position: absolute;
+      top: 8px;
+      left: 18px;
+      font-size: 7rem;
+      opacity: 0.18;
+      font-family: serif;
+      line-height: 1;
+    }
+
+    blockquote {
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.5;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .cite-info {
+      text-align: right;
+      font-size: 1rem;
+      opacity: 0.92;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-card,
+    .highlight-card {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    .contact-card {
+      border-top: 5px solid var(--primary);
+    }
+
+    .highlight-card {
+      border-top: 5px solid var(--accent);
+    }
+
+    .sidebar-heading {
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info-block,
+    .highlight-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-info-block:last-child,
+    .highlight-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-title,
+    .highlight-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-person,
+    .highlight-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-phone,
+    .highlight-note {
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+    }
+
+    footer {
+      background: #020617;
+      color: #94a3b8;
+      padding: 4rem 5% 2rem;
+      text-align: center;
+    }
+
+    .footer-title {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    @media (max-width: 1024px) {
+      .content-layout {
+        grid-template-columns: 1fr;
+        margin-top: -3rem;
+      }
+
+      article.news-body {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header.dynamic-header {
+        padding: 4rem 5% 8rem;
+      }
+
+      .article-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      blockquote {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar"></div>
+
+  <nav>
+    <div class="brand">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      光明國小校園新聞
+    </div>
+  </nav>
+
+  <header class="dynamic-header">
+    <div class="title-box">
+      <div class="badge">GUANGMING RHAPSODY</div>
+      <h1>光明響樂迴盪校園前庭<br>光明國小「美藝之夜」奏出藝文教育動人樂章</h1>
+      <p class="sub-title">五大藝文團隊齊聚展演，以「光明響樂」串聯學習成果、校園美感氛圍與向陽館未來願景</p>
+    </div>
+    <div class="header-shape">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+      </svg>
+    </div>
+  </header>
+
+  <main class="content-layout">
+    <article class="news-body">
+      <div class="article-meta">
+        <span>發稿日期：114年＿＿月＿＿日</span>
+        <span>新聞來源：新竹縣光明國小訊</span>
+        <span>活動主題：光明響樂</span>
+      </div>
+
+      <div class="rich-content">
+        <p><strong>【新竹縣光明國小訊】</strong>新竹縣光明國小舉辦一年一度「美藝之夜」成果展演活動，今年以<strong>「光明響樂」</strong>為主題，集結學校管樂團、弦樂團、打擊樂團、舞蹈社及合唱團五大藝文團隊，於校園前庭空間共同演出，展現學生長期投入藝術學習的豐碩成果。活動透過開放、親近的戶外展演形式，營造音樂與藝術在校園中自然流動的氛圍，同時作為即將落成之「向陽館活動中心」的暖身預告，為校園藝文教育開啟嶄新篇章。</p>
+
+        <p>光明國小李孟印校長表示，「光明響樂」不僅象徵聲音的共鳴，更代表學生在藝術學習中彼此呼應、共同成長的歷程。「美藝之夜」作為年度重要藝文活動，透過多元團隊同台演出，讓學生在舞台上展現自信，並在觀摩與交流中深化藝術素養與團隊精神。此次特別選擇校園前庭作為展演場域，強調藝術貼近生活的理念，使音樂、舞蹈與表演藝術自然融入校園日常，也邀請家長與社區民眾以更自在的方式走進校園、共享藝文成果。</p>
+
+        <p>活動當晚，各團隊依序登場，展現「光明響樂」的多元層次。管樂團以氣勢飽滿的合奏揭開序幕，透過整齊穩健的節奏與聲部協調，展現學生紮實的音樂基礎；弦樂團以細膩柔和的旋律詮釋樂曲情感，營造優雅動人的氛圍；打擊樂團以節奏鮮明、動感十足的演出，帶動現場熱烈氣氛；舞蹈社則以肢體律動與隊形變化，呈現充滿張力與美感的視覺饗宴；合唱團以溫暖和諧的歌聲，為整場演出增添情感深度，讓「光明響樂」在音符與歌聲中達到最動人的共鳴。</p>
+
+        <div class="featured-quote">
+          <blockquote>「『光明響樂』不只是一次成果展演，更是孩子們用音樂、舞蹈與歌聲共同寫下的成長樂章，也讓全校親師生一起迎接向陽館活動中心啟用前最溫暖的序曲。」</blockquote>
+          <div class="cite-info">— 光明國小校方表示</div>
+        </div>
+
+        <p>光明國小指出，藝文教育的核心不僅在於技巧培養，更在於培育學生的專注力、自信心與團隊合作能力。學生從日常排練到正式展演，歷經反覆練習與調整，在過程中學習傾聽他人、表達自我，並建立面對舞台的勇氣與責任感。「光明響樂」正是這些學習歷程的具體展現，象徵每一位學生在藝術學習中的累積與蛻變，也讓孩子在一次次演出中逐步建立美感素養與文化自信。</p>
+
+        <p>此外，本次「美藝之夜」亦肩負「向陽館活動中心」啟用前的暖身意義。校方表示，未來向陽館將成為整合藝文、體育與多元學習的重要場域，提供更完善的展演與學習空間。透過此次在校園前庭舉辦「光明響樂」主題展演，不僅提前營造藝文氛圍，也讓親師生對未來校園空間的發展有更具體的期待與想像，進一步串聯校園環境優化與全人教育發展的願景。</p>
+
+        <p>光明國小進一步表示，藝術教育是培養學生美感素養與人文關懷的重要基石。透過「光明響樂」主題的「美藝之夜」，不僅展現學生學習成果，更促進親師生與社區之間的情感連結，形塑具有溫度與文化底蘊的校園氛圍。未來學校將持續深化藝文教育推動，讓藝術成為孩子成長過程中不可或缺的重要力量，並在向陽館啟用後，持續拓展更多元的學習與展演機會，讓每一位孩子都能在更寬廣的舞台上自信發聲、自在發光。</p>
+      </div>
+    </article>
+
+    <aside class="sidebar">
+      <div class="highlight-card">
+        <div class="sidebar-heading">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2l2.4 4.86L20 7.64l-4 3.9.94 5.46L12 14.77 7.06 17l.94-5.46-4-3.9 5.6-.78L12 2z"/></svg>
+          活動亮點
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-label">年度主題</span>
+          <div class="highlight-text">光明響樂</div>
+          <div class="highlight-note">以聲音共鳴串聯孩子的藝術成長</div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-label">展演團隊</span>
+          <div class="highlight-text">管樂團、弦樂團、打擊樂團、舞蹈社、合唱團</div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-label">展演場域</span>
+          <div class="highlight-text">校園前庭空間</div>
+          <div class="highlight-note">營造開放、親近的露天藝術氛圍</div>
+        </div>
+        <div class="highlight-item">
+          <span class="highlight-label">延伸意義</span>
+          <div class="highlight-text">向陽館活動中心暖身預告</div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="sidebar-heading">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          資料詳洽
+        </div>
+
+        <div class="contact-info-block">
+          <span class="contact-title">學校辦理處室承辦人</span>
+          <div class="contact-person">＿＿＿＿</div>
+          <div class="contact-phone">電話：＿＿＿＿　分機：＿＿＿＿</div>
+        </div>
+
+        <div class="contact-info-block">
+          <span class="contact-title">學校新聞聯絡人</span>
+          <div class="contact-person">＿＿＿＿</div>
+          <div class="contact-phone">電話：＿＿＿＿　分機：＿＿＿＿</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="footer-title">新竹縣光明國民小學</div>
+    <p>以藝術點亮校園，以學習串聯未來</p>
+    <div style="margin-top: 2rem; opacity: 0.5; font-size: 0.82rem;">
+      © 114 新竹縣光明國小｜校園新聞網頁稿
+    </div>
+  </footer>
+</body>
+</html>
